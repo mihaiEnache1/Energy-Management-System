@@ -1,0 +1,25 @@
+<mat-toolbar color="primary" style="height: 50px;">
+    <span style="margin-right: 15px; font-size: larger;">
+        Energy Management System
+    </span>
+    <span class="space-buttons"></span>
+    <button *ngIf="!isLoggedIn()" mat-raised-button color="warn" routerLink="/login">
+        Login
+    </button>
+    <button *ngIf="isLoggedIn()" (click)="logout()" mat-raised-button color="warn">
+        Logout
+    </button>
+</mat-toolbar>
+
+<mat-toolbar color="primary" *ngIf="isLoggedIn()">
+    <button mat-raised-button routerLink="/" style="margin-right: 10px;">Home</button>
+    <button *ngIf="isAdmin()" mat-raised-button routerLink="/add-user" style="margin-right: 10px;">Add User</button>
+    <button *ngIf="isAdmin()" mat-raised-button routerLink="/show-users" style="margin-right: 10px;">Show Users</button>
+    <button *ngIf="isAdmin()" mat-raised-button routerLink="/add-device" style="margin-right: 10px;">Add Device</button>
+    <button *ngIf="isAdmin()" mat-raised-button routerLink="/show-devices" style="margin-right: 10px;">Show Devices</button>
+    <button *ngIf="isAdmin()" mat-raised-button routerLink="/map-devices" style="margin-right: 10px;">Map Devices</button>
+    <button *ngIf="isClient()" mat-raised-button routerLink="/show-my-devices" style="margin-right: 10px;">My Devices</button>
+    <button *ngIf="isClient()" mat-raised-button routerLink="/chart" style="margin-right: 10px">Device Charts</button>
+    <button *ngIf="isAdmin()" mat-raised-button routerLink="/my-chats" style="margin-right: 10px;">My Chats</button>
+    <button *ngIf="isClient()" mat-raised-button [routerLink]="getChatRouterLink()" style="margin-right: 10px;">Chat with Admin</button>
+</mat-toolbar>

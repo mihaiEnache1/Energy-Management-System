@@ -1,0 +1,38 @@
+<div class="container mt-5">
+    <div class="card p-2">
+        <form #userForm="ngForm" (ngSubmit)="addUser(userForm)">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Enter user name</mat-label>
+                <input matInput placeholder="User name" [(ngModel)]="user.name" name="name" required #nameInput="ngModel">
+                <mat-hint *ngIf="nameInput.hasError('required') && nameInput.touched" class="error-hint">Name is required</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Enter user email</mat-label>
+                <input matInput placeholder="User email" [(ngModel)]="user.email" name="email" required email #emailInput="ngModel">
+                <mat-hint *ngIf="emailInput.hasError('required') && emailInput.touched" class="error-hint">Email is required</mat-hint>
+                <mat-hint *ngIf="emailInput.hasError('email')" class="error-hint">Please enter a valid email (e.g., example@example.com)</mat-hint>
+            </mat-form-field>                       
+            <mat-form-field class="w-100">
+                <mat-label>Enter user password</mat-label>
+                <input matInput placeholder="User password" [type]="hide ? 'password' : 'text'" [(ngModel)]="user.password" name="password" required #passwordInput="ngModel">
+                <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" [attr.aria-label]="'Toggle password visibility'" [attr.aria-pressed]="hide" type="button">
+                    <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+                <mat-hint *ngIf="passwordInput.hasError('required') && passwordInput.touched" class="error-hint">Please enter a password</mat-hint>
+            </mat-form-field>            
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                [(ngModel)]="selectedRole" name="role">
+                <mat-radio-button class="example-radio-button" *ngFor="let role of roles" [value]="role">
+                    {{role}}
+                </mat-radio-button>
+            </mat-radio-group>
+            <div align="end">
+                <button *ngIf="isNewUser" type="submit" mat-stroked-button color="primary"
+                    style="margin-right: 10px;">Add User</button>
+                <button *ngIf="!isNewUser" type="submit" mat-stroked-button color="primary"
+                    style="margin-right: 10px;">Update User</button>
+                <button mat-stroked-button color="primary">Clear</button>
+            </div>
+        </form>
+    </div>
+</div>

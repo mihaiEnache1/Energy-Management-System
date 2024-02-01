@@ -1,0 +1,30 @@
+<div class="container mt-5" style="display: flex; justify-content: center; align-items: center;">
+    <div class="card" style="width: 800px; padding: 20px; display: flex; justify-content: center; align-items: center;">
+        <form #loginForm="ngForm" (ngSubmit)="authenticate(loginForm)">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Enter your email</mat-label>
+                <input matInput placeholder="User email" [(ngModel)]="authenticationRequest.email" name="email" required email #emailInput="ngModel">
+                <mat-hint *ngIf="emailInput.hasError('required') && emailInput.touched" class="error-hint">Email is required</mat-hint>
+                <mat-hint *ngIf="emailInput.hasError('email')" class="error-hint">Please enter a valid email (e.g., example@example.com)</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="w-100">
+                <mat-label>Enter user password</mat-label>
+                <input matInput placeholder="User password" [type]="hide ? 'password' : 'text'" [(ngModel)]="authenticationRequest.password" name="password" required #passwordInput="ngModel">
+                <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" [attr.aria-label]="'Toggle password visibility'" [attr.aria-pressed]="hide" type="button">
+                    <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+                <mat-hint *ngIf="passwordInput.hasError('required') && passwordInput.touched" class="error-hint">Please enter a password</mat-hint>
+            </mat-form-field> 
+            <div align="center">
+                <button type="submit" mat-stroked-button color="warn" [disabled]="loginForm.invalid">
+                    Login            
+                </button>
+            </div>
+            <div align="center" style="margin-top: 10px;">
+                <button mat-stroked-button color="primary" (click)="signUp()">
+                    Sign Up
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

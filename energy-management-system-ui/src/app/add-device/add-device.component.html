@@ -1,0 +1,28 @@
+<div class="container mt-5">
+    <div class="card p-2">
+        <form #deviceForm="ngForm" (ngSubmit)="addDevice(deviceForm)">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Enter device description</mat-label>
+                <input matInput placeholder="Device description" [(ngModel)]="device.description" name="description" required #descriptionInput="ngModel">
+                <mat-hint *ngIf="descriptionInput.hasError('required') && descriptionInput.touched" class="error-hint">Device description is required</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Enter device address</mat-label>
+                <input matInput placeholder="Device address" [(ngModel)]="device.address" name="address" required #addressInput="ngModel">
+                <mat-hint *ngIf="addressInput.hasError('required') && addressInput.touched" class="error-hint">Device address is required</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Enter device maximum hourly energy consumption</mat-label>
+                <input matInput placeholder="Device maximum hourly consumption" [(ngModel)]="device.maximumHourlyConsumption" name="consumption" required #consumptionInput="ngModel">
+                <mat-hint *ngIf="consumptionInput.hasError('required') && consumptionInput.touched" class="error-hint">Device consumption is required</mat-hint>
+            </mat-form-field>
+            <div align="end">
+                <button *ngIf="isNewDevice" type="submit" mat-stroked-button color="primary"
+                    style="margin-right: 10px;">Add Device</button>
+                <button *ngIf="!isNewDevice" type="submit" mat-stroked-button color="primary"
+                    style="margin-right: 10px;">Update Device</button>
+                <button mat-stroked-button color="primary">Clear</button>
+            </div>
+        </form>
+    </div>
+</div>

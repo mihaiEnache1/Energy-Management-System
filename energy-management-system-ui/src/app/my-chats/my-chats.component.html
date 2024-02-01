@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="chat-list mat-elevation-z5" [style.height]="calculateChatListHeight()">
+        <mat-selection-list [multiple]="false" [(ngModel)]="selectedUserUid" (ngModelChange)="getSelectedUser()">
+            <mat-list-option *ngFor="let user of users" [value]="user.uid">
+                {{user.name}}
+            </mat-list-option>
+        </mat-selection-list>
+    </div>
+</div>
+<div class="chat_window mt-5" *ngIf="selectedUserUid">
+    <div class="top_menu">
+        <div class="buttons">
+            <div class="button close"></div>
+            <div class="button minimize"></div>
+            <div class="button maximize"></div>
+        </div>
+        <div class="title">
+            <img src="../../../assets/chat-icon.png" width="25px" height="25px">
+            Chat with {{ selectedUserName }}
+        </div>
+    </div>
+    <ul class="messages" #messagesContainer>
+        <li class="message right" *ngFor="let item of messageList"
+            [ngClass]="{'left': item.message_side === 'receiver', 'right': item.message_side === 'sender'}">
+            <div class="avatar"></div>
+            <div class="text_wrapper">
+                <div class="text">{{item.message}}</div>
+            </div>
+        </li>
+        <div *ngIf="isTyping" class="typing-indicator" #typingIndicator>
+            <p>Client is typing...</p>
+        </div>
+        <div *ngIf="isReading && messageList.length > 0 && !isTyping && isCurrentUserSender()"
+            class="typing-indicator" #readingIndicator>
+            <p>Seen</p>
+        </div>
+    </ul>
+    <div class="bottom_wrapper clearfix">
+        <div class="message_input_wrapper">
+            <input class="message_input" placeholder="Message..." [(ngModel)]="messageInput" (input)="onInput($event)"
+                (focus)="onFocus()" (blur)="onBlur()" (keyup.enter)="sendMessage()" />
+        </div>
+        <div class="send_message" (click)="sendMessage()">
+            <div class="icon"></div>
+            <div class="text">Send</div>
+        </div>
+    </div>
+</div>

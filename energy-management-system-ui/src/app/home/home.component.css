@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+    padding: 20px; /* Add padding for spacing */
+    display: flex;
+    align-items: center; /* Vertically center the content */
+    height: 100vh; /* Use the full viewport height */
+}
+
+.left-text {
+    color: black;
+    text-align: left; /* Align text to the left side of the page */
+    width: 50%; /* Set the width to half of the page */
+    padding: 20px; /* Add padding for spacing within the left half */
+    box-sizing: border-box; /* Include padding in the element's total width */
+}

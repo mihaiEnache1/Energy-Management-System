@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://device-management-database:5432/device-management
+    # url: jdbc:postgresql://localhost:5432/device-management
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  rabbitmq:
+    # addresses: localhost:5672
+    host: rabbit
+server:
+  port: 8081
+
+security:
+  jwt:
+    secret-key: p27hQF7rs3OCVAVNn6ovnP0hAM4bY2HvcRasLP1KiI6U5Rg7tV3eNdjBdSjGDleq
+

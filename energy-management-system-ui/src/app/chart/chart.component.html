@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-lg-4 d-flex flex-column align-items-center">
+      <p style="margin-top: 230px;">Choose the device you want to see its chart</p>
+      <mat-form-field>
+        <mat-label>Your devices</mat-label>
+        <mat-select [(ngModel)]="selectedDevice">
+          <mat-option *ngFor="let device of devicesDescription" [value]="device">{{ device }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Choose a date</mat-label>
+        <input matInput [(ngModel)]="selectedDate" [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br>
+      <button mat-stroked-button color="primary" (click)="renderChart()">
+        Generate chart
+      </button>
+    </div>
+    <div class="col-lg-6">
+      <h2>Chart</h2>
+      <canvas id="barchart"></canvas>
+    </div>
+  </div>
+  

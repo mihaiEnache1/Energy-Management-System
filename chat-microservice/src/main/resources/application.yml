@@ -1,0 +1,5 @@
+server:
+  port: 8084
+security:
+  jwt:
+    secret-key: p27hQF7rs3OCVAVNn6ovnP0hAM4bY2HvcRasLP1KiI6U5Rg7tV3eNdjBdSjGDleq
